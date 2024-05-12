@@ -1,9 +1,8 @@
 package com.example.cleanarchitecture.infra.configurations;
 
 import com.example.cleanarchitecture.application.gateways.UserGateway;
-import com.example.cleanarchitecture.application.usecases.CreateUserInteractor;
-import com.example.cleanarchitecture.application.usecases.GetAllUsersInteractor;
-import com.example.cleanarchitecture.domain.entity.User;
+import com.example.cleanarchitecture.application.usecases.impls.CreateUserImpl;
+import com.example.cleanarchitecture.application.usecases.impls.GetAllUsersImpl;
 import com.example.cleanarchitecture.infra.dtos.UserDTOMapper;
 import com.example.cleanarchitecture.infra.gateways.UserRepositoryGateway;
 import com.example.cleanarchitecture.infra.gateways.mappers.UserEntityMapper;
@@ -14,13 +13,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class UserConfig {
     @Bean
-    CreateUserInteractor createUserCase(UserGateway userGateway) {
-        return new CreateUserInteractor(userGateway);
+    CreateUserImpl createUserCase(UserGateway userGateway) {
+        return new CreateUserImpl(userGateway);
     }
 
     @Bean
-    GetAllUsersInteractor getAllUsersCase(UserGateway userGateway){
-        return new GetAllUsersInteractor(userGateway);
+    GetAllUsersImpl getAllUsersCase(UserGateway userGateway){
+        return new GetAllUsersImpl(userGateway);
     }
 
     @Bean

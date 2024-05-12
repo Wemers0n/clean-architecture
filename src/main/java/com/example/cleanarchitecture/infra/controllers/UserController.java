@@ -1,7 +1,9 @@
 package com.example.cleanarchitecture.infra.controllers;
 
-import com.example.cleanarchitecture.application.usecases.CreateUserInteractor;
-import com.example.cleanarchitecture.application.usecases.GetAllUsersInteractor;
+import com.example.cleanarchitecture.application.usecases.CreateUserUseCase;
+import com.example.cleanarchitecture.application.usecases.GetAllUsersUseCase;
+import com.example.cleanarchitecture.application.usecases.impls.CreateUserImpl;
+import com.example.cleanarchitecture.application.usecases.impls.GetAllUsersImpl;
 import com.example.cleanarchitecture.domain.entity.User;
 import com.example.cleanarchitecture.infra.dtos.request.CreateUserRequest;
 import com.example.cleanarchitecture.infra.dtos.response.CreateUserResponse;
@@ -15,26 +17,26 @@ import java.util.List;
 // @AllArgsConstructor
 public class UserController {
 
-    private final GetAllUsersInteractor getAllUsersInteractor;
-    private final CreateUserInteractor createUserInteractor;
+    private final GetAllUsersUseCase getAllUsersUseCase;
+    private final CreateUserUseCase createUserUseCase;
     private final UserDTOMapper userDTOMapper;
 
-    public UserController(CreateUserInteractor createUserInteractor, GetAllUsersInteractor getAllUsersInteractor, UserDTOMapper userDTOMapper) {
-        this.getAllUsersInteractor = getAllUsersInteractor;
-        this.createUserInteractor = createUserInteractor;
+    public UserController(CreateUserImpl createUserUseCase, GetAllUsersImpl getAllUsersUseCase, UserDTOMapper userDTOMapper) {
+        this.getAllUsersUseCase = getAllUsersUseCase;
+        this.createUserUseCase = createUserUseCase;
         this.userDTOMapper = userDTOMapper;
     }
 
     @GetMapping
     List<CreateUserResponse> getAll(){
-        List<User> userList = getAllUsersInteractor.getAllUsers();
+        List<User> userList = getAllUsersUseCase.getAllUsers();
         return userDTOMapper.toResponseList(userList);
     }
 
     @PostMapping
     CreateUserResponse create(@RequestBody CreateUserRequest userRequest){
         User userBussinessObj = userDTOMapper.toUser(userRequest);
-        User user = createUserInteractor.createUser(userBussinessObj);
+        User user = createUserUseCase.createUser(userBussinessObj);
         return userDTOMapper.toResponse(user);
     }
 }
