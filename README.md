@@ -1,9 +1,7 @@
 
 # Clean Architecture com Java Spring Boot
 
-O modelo proposto por Robert C. Martin, visa separar as preocupações do negócio das tecnologias específicas, promovendo a independência de frameworks e facilitando a manutenção e evolução do software ao longo do tempo.
-
-Neste projeto o Spring foi utilizado para lidar com os detalhes técnicos e de infraestrutura, enquanto a Clean Architecture orienta a organização do código em camadas coesas e desacopladas.
+O objetivo deste projeto é aplicar meus conhecimentos em Clean Architecture e aprofundar o estudo dos princípios e práticas propostos pela arquitetura. Este projeto também visa melhorar e por em prática minhas habilidades em desenvolvimento de software, arquitetura de sistemas e uso de frameworks como Spring.
 
 ## Tecnologias
 
